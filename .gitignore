@@ -1,3 +1,3 @@
 dart-sass-?.?.?.gem
-bin/dart-sass
+ext/dart-sass
 .DS_Store

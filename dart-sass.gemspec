@@ -10,6 +10,6 @@ Gem::Specification.new do |s|
   s.email       = 'pmusaraj@gmail.com'
   s.homepage    = 'https://rubygems.org/gems/dart-sass'
   s.license     = 'MIT'
-  s.files       = Dir.glob("lib/*") + Dir.glob("bin/**/*") + Dir.glob("packages/**/*") + ["Rakefile", "README.md"]
-  s.extensions  = ["Rakefile"]
+  s.files       = Dir.glob("lib/*") + Dir.glob("ext/**/*") + Dir.glob("packages/**/*") + ["Rakefile", "README.md"]
+  s.extensions  = ["ext/extconf.rb"]
 end

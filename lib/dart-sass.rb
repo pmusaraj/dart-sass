@@ -5,7 +5,7 @@ require 'tempfile'
 require 'json'
 
 class DartSass
-  VERSION = "0.1.3"
+  VERSION = "0.1.5"
   DART_VERSION = "1.32.4"
 
   class Error < StandardError; end
@@ -17,7 +17,7 @@ class DartSass
 
   def initialize(options={})
     gem_root = File.expand_path('..', __dir__)
-    executable_dir = File.join(gem_root, 'bin', "dart-sass")
+    executable_dir = File.join(gem_root, 'ext', "dart-sass")
 
     @compiler = "#{executable_dir}/sass"
     @content = options.delete(:content) || nil
