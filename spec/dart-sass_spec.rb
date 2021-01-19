@@ -81,6 +81,20 @@ RSpec.describe DartSass do
       expect(map["sources"]).to include("fixtures/includes/additional.scss", "fixtures/includes/variables.scss", "fixtures/base.scss")
     end
 
+    it 'can output to file' do
+      filename = "/tmp/result.css"
+
+      opts = {
+        sourcefile: "#{dir}/fixtures/base.scss",
+        output: filename
+      }
+      result = described_class.new(opts).compile
+
+      css = File.read filename
+      sourcemap = File.read filename + ".map"
+      expect(css).to include("color:\"red\"")
+      expect(sourcemap).to include("sourceRoot")
+    end
   end
 
   describe '.compile with stdin' do

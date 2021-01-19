@@ -3,6 +3,12 @@ require_relative 'lib/dart-sass'
 
 BASE_URL = "https://github.com/sass/dart-sass/releases/download"
 
+desc "Extract Dart Sass executable"
+task :update_dart do
+  platform = Gem::Platform.local.os == "darwin" ? "macos" : Gem::Platform.local.os
+  `tar -xzvf packages\/#{platform}/dartsass-#{DartSass::DART_VERSION}.tar.gz -C ext/`
+end
+
 desc "Download executables for current version"
 task :pull_dart do
   platforms = %w[darwin linux]
@@ -15,3 +21,5 @@ task :pull_dart do
     `cd packages\/#{platform} && wget -O dartsass-#{DartSass::DART_VERSION}.tar.gz #{url}`
   end
 end
+
+task :default => :update_dart

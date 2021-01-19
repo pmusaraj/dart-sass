@@ -5,7 +5,7 @@ require 'tempfile'
 require 'json'
 
 class DartSass
-  VERSION = "0.1.5"
+  VERSION = "0.1.6"
   DART_VERSION = "1.32.4"
 
   class Error < StandardError; end
@@ -22,16 +22,19 @@ class DartSass
     @compiler = "#{executable_dir}/sass"
     @content = options.delete(:content) || nil
     @source = options.delete(:sourcefile) || nil
+    @output = options.delete(:output) || nil
     @strip_paths = options.delete(:"strip-sourcemap-path") || nil
 
     @options  = DEFAULT_OPTIONS.merge(options)
-    @tempfile = Tempfile.new('dart-sass-temp-file')
+    @tempfile = Tempfile.new('dart-sass') if @output.nil?
   end
 
   def compile
     _, stderr, status = Open3.capture3(*command, stdin_data: @content)
 
     if status.success?
+      return @output if !@output.nil?
+
       css = File.read @tempfile.path
 
       if no_sourcemap_files
@@ -74,9 +77,10 @@ class DartSass
 
   def command
     src = @source || "--stdin"
+    output_path = @output || @tempfile.path
 
     if @source || @content
-      "#{@compiler} #{src} #{@tempfile.path} #{serialize_options(@options).flatten.join(' ')}"
+      "#{@compiler} #{src} #{output_path} #{serialize_options(@options).flatten.join(' ')}"
     else
       raise Error.new "No sourcefile or content option was provided, you need to specify one of the two."
     end
