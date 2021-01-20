@@ -57,6 +57,20 @@ css, sourcemap = DartSass.new(opts).compile
 
 Note: one of `sourcefile` or `content` must be provided.
 
+#### custom-cli-path
+
+Specify your own installation of the Dart Sass binary:
+
+```ruby
+custom_cli_path = "/usr/local/Cellar/sass/1.30.0/bin/sass"
+
+opts = {
+  sourcefile: "example.scss",
+  "custom-cli-path": custom_cli_path
+}
+result = DartSass.new(opts).compile
+```
+
 #### output
 
 Switches the Output to a file in the filesystem (by default, the compiled CSS and sourcemap are returned, like in the examples above).

@@ -15,10 +15,10 @@ class DartSass
   }
 
   def initialize(options={})
+    custom_cli_path = options.delete(:"custom-cli-path") || nil
     gem_root = File.expand_path('..', __dir__)
-    executable_dir = File.join(gem_root, 'ext', "dart-sass")
+    @compiler = custom_cli_path || File.join(gem_root, 'ext', "dart-sass", "sass")
 
-    @compiler = "#{executable_dir}/sass"
     @content = options.delete(:content) || nil
     @source = options.delete(:sourcefile) || nil
     @output = options.delete(:output) || nil

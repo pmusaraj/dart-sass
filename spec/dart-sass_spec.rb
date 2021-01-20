@@ -19,6 +19,19 @@ RSpec.describe DartSass do
       expect(command).to include('fake.scss')
       expect(command).to include('--style compressed')
     end
+
+    it 'respects the cli-path option' do
+      custom_cli_path = "/usr/local/Cellar/sass/1.30.0/bin/sass"
+      opts = {
+        sourcefile: "fake.scss",
+        "custom-cli-path": custom_cli_path
+      }
+
+      command = described_class.new(opts).send(:command)
+
+      expect(command).to include(custom_cli_path)
+      expect(command).not_to include("custom-cli-path")
+    end
   end
 
   describe '.compile' do
