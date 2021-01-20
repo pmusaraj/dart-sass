@@ -11,8 +11,7 @@ class DartSass
   class Error < StandardError; end
 
   DEFAULT_OPTIONS = {
-    :style => 'compressed',
-    :"stop-on-error" => true
+    :style => 'compressed'
   }
 
   def initialize(options={})
