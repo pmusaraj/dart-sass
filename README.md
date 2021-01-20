@@ -1,6 +1,6 @@
-# Dart Sass Wrapper
+# Compile SCSS using Dart Sass
 
-This gem uses the Dart Sass executables to compile stylesheets.
+This gem uses the Dart Sass executable to compile your stylesheets.
 
 ## Installation
 
