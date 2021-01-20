@@ -59,7 +59,7 @@ Note: one of `sourcefile` or `content` must be provided.
 
 #### custom-cli-path
 
-Specify your own installation of the Dart Sass binary:
+Use a different Dart Sass binary than the one included with the gem:
 
 ```ruby
 custom_cli_path = "/usr/local/Cellar/sass/1.30.0/bin/sass"
@@ -73,7 +73,7 @@ result = DartSass.new(opts).compile
 
 #### output
 
-Switches the Output to a file in the filesystem (by default, the compiled CSS and sourcemap are returned, like in the examples above).
+Switches the output to a file in the filesystem (by default, the compiled CSS and sourcemap are returned, like in the examples above).
 
 ```ruby
 opts = {
