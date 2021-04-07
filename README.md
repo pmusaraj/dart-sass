@@ -31,7 +31,7 @@ opts = {
   sourcefile: "vendor/bootstrap/scss/bootstrap.scss",
 }
 
-css, sourcemap = DartSass.new(opts).compile
+css, sourcemap = DartSass::Engine.new(opts).compile
 ```
 
 Currently only one-to-one mode is supported.
@@ -52,7 +52,7 @@ Load inline SCSS. Example:
 opts = {
   content: '$color: "#EE4433"; body {border: 2px solid $color;}'
 }
-css, sourcemap = DartSass.new(opts).compile
+css, sourcemap = DartSass::Engine.new(opts).compile
 ```
 
 Note: one of `sourcefile` or `content` must be provided.
@@ -68,7 +68,7 @@ opts = {
   sourcefile: "example.scss",
   "custom-cli-path": custom_cli_path
 }
-result = DartSass.new(opts).compile
+result = DartSass::Engine.new(opts).compile
 ```
 
 #### output
@@ -80,7 +80,7 @@ opts = {
   sourcefile: "example.scss",
   output: "example.css"
 }
-result = DartSass.new(opts).compile
+result = DartSass::Engine.new(opts).compile
 
 # outputs example.css and example.css.map in the current directory
 ```
@@ -96,5 +96,5 @@ opts = {
   "strip-sourcemap-path": [ "#{dir}/fixtures" ]
 }
 
-css, sourcemap = DartSass.new(opts).compile
+css, sourcemap = DartSass::Engine.new(opts).compile
 ```

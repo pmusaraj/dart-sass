@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe DartSass do
+require 'dart-sass'
+
+RSpec.describe DartSass::Engine do
   let!(:dir) { File.expand_path File.dirname(__FILE__) }
 
   describe '.command' do
